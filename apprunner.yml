@@ -1,0 +1,14 @@
+version: 1.0
+runtime:
+  language: python
+  version: "3.11"
+build:
+  commands:
+    # Aquí instalamos pip si no está disponible
+    - apt-get update && apt-get install -y python3-pip
+    # Instalamos las dependencias listadas en el archivo requirements.txt
+    - pip install -r requirements.txt
+start:
+  commands:
+    # Inicia la aplicación de Streamlit en el puerto asignado por App Runner
+    - streamlit run app.py --server.port $PORT --server.enableCORS false
